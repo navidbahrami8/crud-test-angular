@@ -1,0 +1,11 @@
+add data
+<form   [formGroup]="customerForm">
+  
+</form>
+<div class="">
+  <ul *ngFor="let item of customers">
+    <li>{{ item.Firstname }}</li>
+  </ul>
+
+  <button mat-button color="primary" (click)="addCustomer()">add</button>
+</div>
