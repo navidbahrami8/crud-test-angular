@@ -1,17 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AfterViewInit } from '@angular/core';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators , FormGroupDirective, NgForm, } from '@angular/forms';
 import { ICustomerModel } from 'src/app/shared/models/customer.model';
 import { CustomerService } from 'src/app/shared/services/customer.service';
+import {ErrorStateMatcher} from '@angular/material/core';
 import Customer from 'src/assets/data/customer.json';
+import { BaseComponent } from 'src/app/shared/components/base.comonent';
+
 
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css'],
 })
-export class CustomerComponent implements OnInit, AfterViewInit {
+export class CustomerComponent extends BaseComponent implements OnInit, AfterViewInit {
   customerForm: FormGroup = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -26,13 +29,13 @@ export class CustomerComponent implements OnInit, AfterViewInit {
     private customerService: CustomerService,
     private _ref: ChangeDetectorRef,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+  super()}
 
   ngAfterViewInit(): void {
     this._ref.detectChanges();
   }
 
-  customers: any = [];
   user: ICustomerModel = {
     id: 11,
     firstName: 'navid',
@@ -55,7 +58,7 @@ export class CustomerComponent implements OnInit, AfterViewInit {
     this.customerForm = this.formBuilder.group({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
-      email: new FormControl(''),
+      email: new FormControl('',[Validators.required, Validators.email]),
       dateOfBirth: new FormControl(''),
       phoneNumber: new FormControl(''),
       bankAccountNumber: new FormControl(''),

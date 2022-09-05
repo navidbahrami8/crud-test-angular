@@ -36,8 +36,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ViewCustomerComponent } from './component/customer/view-customer/view-customer.component';
+
 @NgModule({
-  declarations: [AppComponent, CustomerComponent],
+  declarations: [AppComponent, CustomerComponent, ViewCustomerComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -48,6 +51,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatInputModule,
     MatAutocompleteModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     MatRadioModule,
     MatSelectModule,

@@ -6,7 +6,7 @@
 //   DateOfBirth: string;
 //   BankAccountNumber: string;
 //   constructor() {}
-// }
+// } 
 
 export interface ICustomerModel {
   id: number;
