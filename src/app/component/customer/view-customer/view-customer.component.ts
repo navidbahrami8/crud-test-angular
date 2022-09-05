@@ -4,7 +4,9 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
+  ViewChild,
 } from '@angular/core';
+import { MatTable } from '@angular/material/table';
 import { BaseComponent } from 'src/app/shared/components/base.comonent';
 
 @Component({
@@ -16,7 +18,9 @@ export class ViewCustomerComponent
   extends BaseComponent
   implements OnInit, AfterViewInit
 {
+  @ViewChild('myTable',{static : false }) myTable!: MatTable<any>;
   isDeleted: boolean = false;
+  isEdit: boolean = false;
   constructor(
     private httpService: HttpClient,
     private _ref: ChangeDetectorRef
@@ -47,10 +51,9 @@ export class ViewCustomerComponent
   editData(index: any) {}
 
   deleteData(index: any) {
-    console.log(index, 'i');
     this.isDeleted = true;
     delete this.dataSource[index];
-    this.customers = this.dataSource;
-    this.ngAfterViewInit();
+    // this.customers = this.dataSource;
+    this.myTable.renderRows();
   }
 }
